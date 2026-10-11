@@ -1,0 +1,173 @@
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const LayoutDemo(),
+    );
+  }
+}
+
+class LayoutDemo extends StatelessWidget {
+  const LayoutDemo({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Flutter Layouts'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: const [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.deepPurple,
+              ),
+              child: Text(
+                'Layout Widgets',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                ),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.view_week),
+              title: Text('Row Demo'),
+            ),
+            ListTile(
+              leading: Icon(Icons.view_agenda),
+              title: Text('Column Demo'),
+            ),
+            ListTile(
+              leading: Icon(Icons.layers),
+              title: Text('Stack Demo'),
+            ),
+          ],
+        ),
+      ),
+      body: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          // Row Demo
+          const Text(
+            '1. Row Demo',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 15),
+          const Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Icon(Icons.star, color: Colors.orange, size: 40),
+              Icon(Icons.favorite, color: Colors.red, size: 40),
+              Icon(Icons.thumb_up, color: Colors.blue, size: 40),
+            ],
+          ),
+
+          const SizedBox(height: 30),
+
+          // Column Demo
+          const Text(
+            '2. Column Demo',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Text(
+            'Nature',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Image.network(
+            'https://picsum.photos/600/250?random=1',
+            height: 180,
+            width: double.infinity,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) =>
+                const SizedBox(
+              height: 180,
+              child: Center(child: Text('Image unavailable')),
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Text('A beautiful landscape image.'),
+
+          const SizedBox(height: 30),
+
+          // Stack Demo
+          const Text(
+            '3. Stack Demo',
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 10),
+          Stack(
+            alignment: Alignment.bottomLeft,
+            children: [
+              Image.network(
+                'https://picsum.photos/600/250?random=2',
+                height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) =>
+                    Container(
+                  height: 200,
+                  color: Colors.blueGrey,
+                ),
+              ),
+              Container(
+                padding: const EdgeInsets.all(12),
+                color: Colors.black54,
+                child: const Text(
+                  'Overlay Text',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 10,
+                right: 10,
+                child: Container(
+                  padding: const EdgeInsets.all(10),
+                  color: Colors.white,
+                  child: const Text(
+                    'Layer 2',
+                    style: TextStyle(
+                      color: Colors.deepPurple,
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 20),
+        ],
+      ),
+    );
+  }
+}
