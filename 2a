@@ -1,0 +1,117 @@
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MaterialApp(
+    debugShowCheckedModeBanner: false,
+    home: BasicWidgets(),
+  ));
+}
+
+class BasicWidgets extends StatelessWidget {
+  const BasicWidgets({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Basic Flutter Widgets'),
+        backgroundColor: Colors.deepPurple,
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(20),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text(
+              'Text Widget Demo',
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'Hello, Flutter!',
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.purple,
+              ),
+            ),
+            const SizedBox(height: 20),
+
+            const Text(
+              'Container & Image Demo',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Container(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(10),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Colors.purple, Colors.blue],
+                ),
+                border: Border.all(
+                  color: Colors.deepPurple,
+                  width: 3,
+                ),
+                borderRadius: BorderRadius.circular(15),
+              ),
+              child: Image.network(
+                'https://picsum.photos/600/250',
+                height: 180,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return const SizedBox(
+                    height: 180,
+                    child: Center(
+                      child: Text(
+                        'Image unavailable',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+
+            const SizedBox(height: 20),
+            const Text(
+              'Styled Text Examples',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+              'Small text',
+              style: TextStyle(fontSize: 16),
+            ),
+            const Text(
+              'Large blue text',
+              style: TextStyle(
+                fontSize: 28,
+                color: Colors.blue,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const Text(
+              'Bold purple text',
+              style: TextStyle(
+                fontSize: 23,
+                color: Colors.purple,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
